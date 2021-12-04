@@ -1,6 +1,6 @@
-﻿using API.Entities;
+﻿using Server.Entities;
 
-namespace API.Interfaces
+namespace Server.Interfaces
 {
     public interface ITokenService
     {

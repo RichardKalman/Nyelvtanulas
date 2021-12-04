@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 
-namespace API.Entities
+namespace Server.Entities
 {
     public class AppUser
     {

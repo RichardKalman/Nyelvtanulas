@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './_components/navbar/navbar.component';
 import { LoginComponent } from './_components/login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './_components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './_modules/shared/shared.module';
 import { UserlistComponent } from './_components/userlist/userlist.component';
 import { UserdetailsComponent } from './_components/userdetails/userdetails.component';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { ErrorInterceptor } from './_interceptors/error.interceptor';
 
 
 @NgModule({
@@ -21,7 +25,10 @@ import { UserdetailsComponent } from './_components/userdetails/userdetails.comp
     LoginComponent,
     RegisterComponent,
     UserlistComponent,
-    UserdetailsComponent
+    UserdetailsComponent,
+    NotFoundComponent,
+    ServerErrorComponent,
+    TestErrorsComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,9 @@ import { UserdetailsComponent } from './_components/userdetails/userdetails.comp
     FormsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
