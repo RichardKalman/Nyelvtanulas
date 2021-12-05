@@ -1,1 +1,20 @@
-<p>userlist works!</p>
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table">
+            <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>Savings</th>
+                  <th>Savings</th>
+                  <th>Savings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let member of members" userTableRow [member]="member"></tr>
+               
+                
+                
+            </tbody>
+        </table>
+    </div>
+</div>
