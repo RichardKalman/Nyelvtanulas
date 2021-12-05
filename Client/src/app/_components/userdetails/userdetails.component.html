@@ -4,7 +4,7 @@
             <div class="card-body">
                 <div>
                     <strong>Ide jöhet valami</strong>
-                    <p>JAJA</p>
+                    <p>{{member.email}}</p>
                 </div>
                 <div>
                     <strong>Age:</strong>
@@ -31,12 +31,10 @@
     <div class="col-8">
         <tabset class="member-tabset">
             <tab heading='Leckék'>
-                <h4>Léckek</h4>
-                
+                <h4>Léckek</h4>                
             </tab>
-            <tab heading='További adatok'>
-                <h4>Interests</h4>
-                <p>{{member.interests}}</p>
+            <tab heading='Módosítás'>
+                <app-user-edit [member]="member"></app-user-edit>
             </tab>
             <tab heading='etc'>
                 valami

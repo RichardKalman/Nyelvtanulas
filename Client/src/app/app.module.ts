@@ -18,6 +18,9 @@ import { TestErrorsComponent } from './errors/test-errors/test-errors.component'
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { UserTableRowComponent } from './_components/user-table-row/user-table-row.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { UserEditComponent } from './_components/user-edit/user-edit.component';
+import { NgxSpinnerModule } from 'ngx-spinner'
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
 
 @NgModule({
@@ -31,7 +34,8 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
     NotFoundComponent,
     ServerErrorComponent,
     TestErrorsComponent,
-    UserTableRowComponent
+    UserTableRowComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
@@ -39,11 +43,13 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    NgxSpinnerModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

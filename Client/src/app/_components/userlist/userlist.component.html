@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let member of members" userTableRow [member]="member"></tr>
+                <tr *ngFor="let member of members$ | async" userTableRow [member]="member"></tr>
                
                 
                 

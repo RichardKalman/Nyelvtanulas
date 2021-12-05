@@ -1,0 +1,12 @@
+<form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
+    <h4>Email:</h4>
+    <input class="form-control" [(ngModel)]="member.email" type="email" name="email" id="">
+    <h4 class="mt-2">Nem:</h4>
+    <input type="text" class="form-control" [(ngModel)]="member.gender" name="gender" >
+    <h4 class="mt-2">dateOfBirth (WIP)</h4>
+    <input type="date" class="form-control" [(ngModel)]="member.dateOfBirth " name="dateOfBirth" >
+    <br>
+    <button [disabled]="!editForm.dirty" form="editForm" type="submit" class="btn btn-success btn-block">Save Changes</button>
+</form>
+
+            
