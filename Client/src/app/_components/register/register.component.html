@@ -6,20 +6,23 @@
                     <h3>Regisztrálás</h3>
                 </div>
                 <div class="card-body">
-                    <form #registerForm="ngForm" (ngSubmit)="register()" >
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-user"></i></span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="username" name="username" [(ngModel)]="model.username">
-                            
+                    <form [formGroup]='registerForm' (ngSubmit)="registerForm.valid && register()" >
+                        <app-text-input [formControl]='registerForm.controls["username"]' [label]='"Felhasználó név"'></app-text-input>   
+                        <app-text-input [formControl]='registerForm.controls["email"]' [label]='"Email"'></app-text-input>                     
+                        <app-date-input [formControl]='registerForm.controls["dateOfBirth"]' [label]='"Születési idő"' ></app-date-input>
+                        <div class="form-group">
+                            <label class="control-label" style="margin-right: 10px;">Nem:</label>
+                            <label class="radio-inline">
+                                <input type="radio" value='Fiú' formControlName='gender'> Fiú
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" value='Lány' formControlName='gender' class="ml-3"> Lány
+                            </label>
                         </div>
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-key"></i></span>
-                            </div>
-                            <input type="password" class="form-control" placeholder="password" name="password" [(ngModel)]="model.password">
-                        </div>
+                        <app-text-input [formControl]='registerForm.controls["password"]' [label]='"Jelszó"' [type]='"password"'></app-text-input>
+                        <app-text-input [formControl]='registerForm.controls["confirmPassword"]' [label]='"Jelszó mégegyszer"'  [type]='"password"'></app-text-input>
+
+
                         <div class="form-group">
                             <input type="submit" value="Regisztrálás" class="btn float-right login_btn">
                         </div>

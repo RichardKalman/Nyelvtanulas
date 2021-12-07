@@ -8,7 +8,7 @@ import { NavbarComponent } from './_components/navbar/navbar.component';
 import { LoginComponent } from './_components/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './_components/register/register.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './_modules/shared/shared.module';
 import { UserlistComponent } from './_components/userlist/userlist.component';
 import { UserdetailsComponent } from './_components/userdetails/userdetails.component';
@@ -21,6 +21,8 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { UserEditComponent } from './_components/user-edit/user-edit.component';
 import { NgxSpinnerModule } from 'ngx-spinner'
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
+import { DateInputComponent } from './_forms/date-input/date-input.component';
+import { TextInputComponent } from './_forms/text-input/text-input.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     ServerErrorComponent,
     TestErrorsComponent,
     UserTableRowComponent,
-    UserEditComponent
+    UserEditComponent,
+    DateInputComponent,
+    TextInputComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,8 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     BrowserAnimationsModule,
     FormsModule,
     SharedModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
