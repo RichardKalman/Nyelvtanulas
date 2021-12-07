@@ -16,6 +16,14 @@ namespace Server.Helpers
 
             CreateMap<MemberUpdateDto, AppUser>();
             CreateMap<RegisterDto, AppUser>();
+
+            //Word
+            CreateMap<Word, WordDto>();
+            CreateMap<WordDto, Word>();
+
+            CreateMap<Word, AddWordDto>();
+            CreateMap<AddWordDto, Word>();
+            CreateMap<AddWordDto, WordDto>();
         }
     }
 }

@@ -1,13 +1,15 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using Server.Data;
 using Server.DTOs;
 using Server.Entities;
 using Server.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-namespace Server.Data.Repositories
+
+namespace Server.Repositories
 {
     public class UserRepository : IUserRepository
     {

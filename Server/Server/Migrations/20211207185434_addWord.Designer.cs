@@ -2,34 +2,21 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Server.Data;
 
 namespace Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20211207185434_addWord")]
+    partial class addWord
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.12");
-
-            modelBuilder.Entity("LessonWord", b =>
-                {
-                    b.Property<int>("LessonsId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("WordsId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("LessonsId", "WordsId");
-
-                    b.HasIndex("WordsId");
-
-                    b.ToTable("LessonWords");
-                });
 
             modelBuilder.Entity("Server.Entities.AppUser", b =>
                 {
@@ -66,20 +53,6 @@ namespace Server.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Server.Entities.Lesson", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Lessons");
-                });
-
             modelBuilder.Entity("Server.Entities.Word", b =>
                 {
                     b.Property<int>("Id")
@@ -95,21 +68,6 @@ namespace Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Words");
-                });
-
-            modelBuilder.Entity("LessonWord", b =>
-                {
-                    b.HasOne("Server.Entities.Lesson", null)
-                        .WithMany()
-                        .HasForeignKey("LessonsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Server.Entities.Word", null)
-                        .WithMany()
-                        .HasForeignKey("WordsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
