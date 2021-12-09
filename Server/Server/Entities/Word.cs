@@ -9,6 +9,6 @@ namespace Server.Entities
 
         public string HungaryWord { get; set; }
         
-        public ICollection<Lesson> Lessons { get; set; }
+        public ICollection<LessonWord> Lessons { get; set; }
     }
 }

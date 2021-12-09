@@ -11,14 +11,12 @@ using System.Threading.Tasks;
 
 namespace Server.Repositories
 {
-    public class WordRepository : IWordRepository
+    public class WordRepository : RepositoryBase<Word>,IWordRepository
     {
-        private readonly DataContext _context;
         private readonly IMapper _mapper;
-        public WordRepository(DataContext context, IMapper mapper)
+        public WordRepository(DataContext context, IMapper mapper) : base(context)
         {
             _mapper = mapper;
-            _context = context;
         }
 
         public async Task<WordDto> GetWordByEnglishWordAsync(string englishWord)
@@ -39,8 +37,6 @@ namespace Server.Repositories
 
         public async Task<Word> GetWordByIdAsync(int id)
         {
-            
-            //SaveAllAsync();
             return await _context.Words
                 .Where(x => x.Id == id)
                 .SingleOrDefaultAsync();
@@ -51,22 +47,32 @@ namespace Server.Repositories
             return await _context.Words.ProjectTo<WordDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
-        public async Task<bool> SaveAllAsync()
+        public async Task<List<WordDto>> GetWordsByIds(IEnumerable<int> ids)
         {
-            return await _context.SaveChangesAsync() > 0;
+            return await _context.Words.Where(x => ids.Contains(x.Id)).ProjectTo<WordDto>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+      
+
+        public async Task<bool> addAllWords(IEnumerable<Word> words)
+        {
+            foreach (var word in words)
+            {
+                _context.Words.Add(word);
+            }
+            return await SaveAllAsync();
         }
 
-        public void Update(Word word)
+        public async Task<bool> AddWord(AddWordDto addWordDto)
         {
-            _context.Entry(word).State = EntityState.Modified;
-        }
-
-        public async Task<bool> AddWord(Word word)
-        {
+            var word = _mapper.Map<Word>(addWordDto);
             _context.Words.Add(word);
             return await this.SaveAllAsync();
         }
 
-         
+        public async Task<bool> IsExist(Word word)
+        {
+            return await _context.Words.AnyAsync(x => x.Id.Equals(word.Id));
+                
+        }
     }
 }

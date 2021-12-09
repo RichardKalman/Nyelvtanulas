@@ -18,6 +18,10 @@ namespace Server.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IWordRepository, WordRepository>();
+            services.AddScoped<ILessonRepository,LessonRepository>();
+            services.AddScoped<ILessonWordRepository, LessonWordRepository>();
+
+
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {

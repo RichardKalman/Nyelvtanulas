@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace Server.Entities
+namespace Server.DTOs
 {
-    public class Lesson
+    public class UpdateLessonDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
         public string Level { get; set; }
 
-        public ICollection<LessonWord> Words { get; set; }
+        public List<int> WordIds { get; set; } = new List<int>();
     }
 }

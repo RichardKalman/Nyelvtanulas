@@ -11,9 +11,8 @@ namespace Server.Data
     {
         public DbSet<AppUser> Users { get; set; }
         public DbSet<Word> Words { get; set; }
-
         public DbSet<Lesson> Lessons { get; set; }
-
+        public DbSet<LessonWord> LessonWords { get; set; }
 
         public DataContext(DbContextOptions options) : base(options)
         {
@@ -24,20 +23,17 @@ namespace Server.Data
         {
             base.OnModelCreating(builder);
 
-            builder
-                .Entity<Lesson>()
-                .HasMany(x => x.Words)
-                .WithMany(x => x.Lessons)
-                .UsingEntity(x => x.ToTable("LessonWords"));
+            builder.Entity<LessonWord>().HasKey(sc => new {  sc.LessonId ,sc.WordId });
 
+            builder.Entity<LessonWord>()
+                .HasOne<Lesson>(sc => sc.Lesson)
+                .WithMany(l => l.Words)
+                .HasForeignKey(sc => sc.LessonId);
 
-            /*
-             * 
-             * modelBuilder
-    .Entity<Post>()
-    .HasMany(p => p.Tags)
-    .WithMany(p => p.Posts)
-    .UsingEntity(j => j.ToTable("PostTags"));*/
+            builder.Entity<LessonWord>()
+                .HasOne<Word>(sc => sc.Word)
+                .WithMany(sc => sc.Lessons)
+                .HasForeignKey(sc => sc.WordId); 
         }
     }
 }

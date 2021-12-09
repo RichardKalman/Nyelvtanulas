@@ -2,6 +2,8 @@
 using Server.DTOs;
 using Server.Entities;
 using Server.Extensions;
+using Server.Interfaces;
+using System.Linq;
 
 namespace Server.Helpers
 {
@@ -24,6 +26,17 @@ namespace Server.Helpers
             CreateMap<Word, AddWordDto>();
             CreateMap<AddWordDto, Word>();
             CreateMap<AddWordDto, WordDto>();
+
+            //Lessons
+            CreateMap<Lesson,LessonDto>()
+                .ForMember(dest => dest.Words, opt => opt.MapFrom(src => src.Words.Select( t =>t.Word)));
+
+
+            CreateMap<LessonDto, Lesson>();
+            CreateMap<UpdateLessonDto, Lesson>();
+            CreateMap<AddLessonDto, Lesson>();
+                 //.ForMember(dest => dest.Words, opt => opt.MapFrom(src => _wordRepository.GetWordsByIds(src.WordIds)));
+
         }
     }
 }

@@ -66,9 +66,8 @@ namespace Server.Controllers
         public async Task<ActionResult<WordDto>> AddWord(AddWordDto addWordDto)
         {
             //WIP ELLENŐRZÉS
-            var word  = _mapper.Map<Word>(addWordDto);
-            await _wordRepository.AddWord(word);
-            return _mapper.Map<WordDto>(word);
+            await _wordRepository.AddWord(addWordDto);
+            return _mapper.Map<WordDto>(addWordDto);
 
             
         }
