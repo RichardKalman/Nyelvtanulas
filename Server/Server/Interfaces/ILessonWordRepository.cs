@@ -8,5 +8,6 @@ namespace Server.Interfaces
         Task<bool> DeleteAllByLessonId(int ids);
         Task<bool> AddAllWordByLessonId(int lessonId, IEnumerable<int> ids);
         Task<bool> AddAllLessonByWordId(int wordId, IEnumerable<int> ids);
+        Task<bool> DeleteAllByWordId(int id);
     }
 }

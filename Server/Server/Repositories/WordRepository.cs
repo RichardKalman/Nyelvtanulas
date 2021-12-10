@@ -14,15 +14,19 @@ namespace Server.Repositories
     public class WordRepository : RepositoryBase<Word>,IWordRepository
     {
         private readonly IMapper _mapper;
-        public WordRepository(DataContext context, IMapper mapper) : base(context)
+
+        public ILessonWordRepository _lessonWordRepository { get; }
+
+        public WordRepository(DataContext context, IMapper mapper, ILessonWordRepository lessonWordRepository) : base(context)
         {
             _mapper = mapper;
+            _lessonWordRepository = lessonWordRepository;
         }
 
         public async Task<WordDto> GetWordByEnglishWordAsync(string englishWord)
         {
             return await _context.Words
-                .Where(x => x.EnglishWord == englishWord)
+                .Where(x => x.EnglishWord.ToLower() == englishWord.ToLower())
                 .ProjectTo<WordDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync(); ;
         }
@@ -30,7 +34,7 @@ namespace Server.Repositories
         public async Task<WordDto> GetWordByHungaryWordAsync(string hungaryWord)
         {
             return await _context.Words
-                .Where(x => x.HungaryWord == hungaryWord)
+                .Where(x => x.HungaryWord.ToLower() == hungaryWord.ToLower())
                 .ProjectTo<WordDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync(); ;
         }
@@ -62,11 +66,15 @@ namespace Server.Repositories
             return await SaveAllAsync();
         }
 
-        public async Task<bool> AddWord(AddWordDto addWordDto)
+        public async Task<Word> AddWord(AddWordDto addWordDto)
         {
             var word = _mapper.Map<Word>(addWordDto);
             _context.Words.Add(word);
-            return await this.SaveAllAsync();
+            if(await this.SaveAllAsync())
+            {
+                return word;
+            }
+            return null;
         }
 
         public async Task<bool> IsExist(Word word)
@@ -74,5 +82,16 @@ namespace Server.Repositories
             return await _context.Words.AnyAsync(x => x.Id.Equals(word.Id));
                 
         }
+
+        public async Task<bool> DeleteWordById(int id)
+        {
+            if(!(await _lessonWordRepository.DeleteAllByWordId(id)))
+            {
+                return false;
+            }
+            var word = await _context.Words.Where(w => w.Id == id).SingleOrDefaultAsync();
+            _context.Remove(word);
+            return await SaveAllAsync();
+         }
     }
 }

@@ -1,0 +1,24 @@
+<div class="alert-box">
+    <div class="modal-header">
+        <h4 class="modal-title">Szerkesztés új szó</h4>
+        <button type="button" class="close" aria-label="Close" (click)="_bsModalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="card">
+            <div class="cad-body">
+                <form [formGroup]="updateWordForm" (ngSubmit)="updateWordForm.valid && UpdateWord()">
+                    <app-text-input [formControl]='updateWordForm.controls["englishWord"]' [(ngModel)]="word.englishWord" [label]='"Angol szó"'></app-text-input> 
+                    <app-text-input [formControl]='updateWordForm.controls["hungaryWord"]' [(ngModel)]="word.hungaryWord" [label]='"Magyar szó"'></app-text-input>  
+                    <div class="form-group">
+                        <input type="submit" value="Hozzáadás" class="btn btn-success float-right ">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">Mégsem</button>        
+    </div>
+</div>

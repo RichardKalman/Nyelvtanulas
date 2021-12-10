@@ -50,6 +50,7 @@ namespace Server.Controllers
         [HttpPut]
         public async Task<ActionResult> ActionResult(WordDto updateWordDto)
         {
+            //return BadRequest();
             var word = await _wordRepository.GetWordByIdAsync(updateWordDto.id);
             _mapper.Map(updateWordDto, word);
 
@@ -65,12 +66,19 @@ namespace Server.Controllers
         [HttpPost]
         public async Task<ActionResult<WordDto>> AddWord(AddWordDto addWordDto)
         {
-            //WIP ELLENŐRZÉS
-            await _wordRepository.AddWord(addWordDto);
-            return _mapper.Map<WordDto>(addWordDto);
+            
+
+            var word = await _wordRepository.AddWord(addWordDto);
+            return Ok(_mapper.Map<WordDto>(word));
 
             
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<bool>> DeleteWord(int id)
+        {
+            var ret = await _wordRepository.DeleteWordById(id);
+            return Ok(ret);
+        }
     }
 }

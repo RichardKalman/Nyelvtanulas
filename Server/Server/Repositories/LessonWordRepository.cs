@@ -39,5 +39,18 @@ namespace Server.Repositories
             _context.RemoveRange(delete);
             return await SaveAllAsync();
         }
+
+        public async Task<bool> DeleteAllByWordId(int id)
+        {
+            
+            var delete = await _context.LessonWords.Where(x => x.WordId == id).ToListAsync();
+            if(delete.Count == 0)
+            {
+                return true;
+            }
+
+            _context.RemoveRange(delete);
+            return await SaveAllAsync();
+        }
     }
 }

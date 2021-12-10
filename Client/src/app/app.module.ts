@@ -23,6 +23,11 @@ import { NgxSpinnerModule } from 'ngx-spinner'
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
+import { WordListComponent } from './_components/word-list/word-list.component';
+import { DeleteDialogComponent } from './_components/dialogs/delete-dialog/delete-dialog.component';
+import { AddWordComponent } from './_components/dialogs/add-word/add-word.component';
+import { UpdateWordComponent } from './_components/dialogs/update-word/update-word.component';
+import { LessonListComponent } from './_components/lesson/lesson-list/lesson-list.component';
 
 
 @NgModule({
@@ -39,7 +44,12 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
     UserTableRowComponent,
     UserEditComponent,
     DateInputComponent,
-    TextInputComponent
+    TextInputComponent,
+    WordListComponent,
+    DeleteDialogComponent,
+    AddWordComponent,
+    UpdateWordComponent,
+    LessonListComponent
   ],
   imports: [
     BrowserModule,
