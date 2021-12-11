@@ -24,6 +24,7 @@ export class LessonDetailsComponent implements OnInit {
   loadMember() {
     this.lessonService.getLessonById(Number(this.route.snapshot.paramMap.get('id'))).subscribe(lesson => {
       this.lesson = lesson;
+      console.log(this.lesson)
     })
   }
 

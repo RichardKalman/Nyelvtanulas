@@ -1,3 +1,4 @@
+import { Member } from "./member";
 import { Word } from "./word";
 
 export interface Lesson {
@@ -5,4 +6,6 @@ export interface Lesson {
     name: string;
     level: string;
     words: Word[];
+    users: Member[];
+
 }

@@ -1,3 +1,5 @@
+import { Lesson } from "./lesson";
+
 export interface Member {
     id: number;
     userName: string;
@@ -7,4 +9,5 @@ export interface Member {
     email: string;
     age: number;
     gender: string;
+    lessons: Lesson[];
 }

@@ -14,6 +14,8 @@ namespace Server.Data
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<LessonWord> LessonWords { get; set; }
 
+        public DbSet<UserLesson> UserLesson { get; set; }
+
         public DataContext(DbContextOptions options) : base(options)
         {
 
@@ -33,7 +35,19 @@ namespace Server.Data
             builder.Entity<LessonWord>()
                 .HasOne<Word>(sc => sc.Word)
                 .WithMany(sc => sc.Lessons)
-                .HasForeignKey(sc => sc.WordId); 
+                .HasForeignKey(sc => sc.WordId);
+
+            builder.Entity<UserLesson>().HasKey(sc => new { sc.LessonId, sc.AppUserId });
+
+            builder.Entity<UserLesson>()
+                .HasOne<Lesson>(l => l.Lesson)
+                .WithMany(l => l.Users)
+                .HasForeignKey(l => l.LessonId);
+
+            builder.Entity<UserLesson>()
+                .HasOne<AppUser>(l => l.AppUser)
+                .WithMany(l => l.Lessons)
+                .HasForeignKey(l => l.AppUserId);
         }
     }
 }

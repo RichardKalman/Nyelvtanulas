@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 
 namespace Server.Entities
 {
@@ -16,6 +17,8 @@ namespace Server.Entities
         public string Email { get; set; }
 
         public string Gender { get; set; }
+
+        public ICollection<UserLesson> Lessons { get; set; }
 
     }
 }

@@ -84,6 +84,14 @@ namespace Server.Repositories
             return await _context.Lessons.ProjectTo<LessonDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
-        
+        public async Task<IEnumerable<MemberDto>> GetNoAcceptUsers(int id)
+        {
+            var lesson = await _context.Lessons.Where(l => l.Id == id).ProjectTo<LessonDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();
+            var users = lesson.Users.Select(x => x.Id);
+
+            var noAcceptUser = await _context.Users.Where(x => !users.Contains(x.Id)).ProjectTo<MemberDto>(_mapper.ConfigurationProvider).ToListAsync();
+
+            return noAcceptUser;
+        }
     }
 }

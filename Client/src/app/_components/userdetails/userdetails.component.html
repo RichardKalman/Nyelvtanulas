@@ -31,7 +31,13 @@
     <div class="col-8">
         <tabset class="member-tabset">
             <tab heading='Leckék'>
-                <h4>Léckek</h4>                
+                <h4>Leckék</h4> 
+                <ul class="list-group">
+                    <li class="list-group-item " *ngFor="let word of member.lessons" >
+                        <span class="float-right">{{word.level}}</span>
+                        <span class="float-left">{{word.name}}</span>
+                    </li>
+                </ul>              
             </tab>
             <tab heading='Módosítás'>
                 <app-user-edit [member]="member"></app-user-edit>

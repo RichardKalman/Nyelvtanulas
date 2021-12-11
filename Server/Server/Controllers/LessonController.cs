@@ -85,6 +85,12 @@ namespace Server.Controllers
             return NoContent();
         }
 
+        [HttpGet("availableusers/{id}")]
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetNoAcceptUsers(int id)
+        {
+            return Ok(await _lessonRepository.GetNoAcceptUsers(id));
+        }
+
 
         
     }

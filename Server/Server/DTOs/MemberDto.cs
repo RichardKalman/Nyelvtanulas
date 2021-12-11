@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Server.DTOs
 {
@@ -14,5 +15,7 @@ namespace Server.DTOs
         public int Age { get; set; }
 
         public string Gender { get; set; }
+
+        public ICollection<LessonDto> Lessons { get; set; }
     }
 }

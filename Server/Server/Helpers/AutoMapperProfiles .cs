@@ -13,7 +13,8 @@ namespace Server.Helpers
         {
             CreateMap<AppUser, MemberDto>()
                 //.ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src =>  src.Photos.FirstOrDefault(x => x.IsMain).Url))
-                .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
+                .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()))
+                .ForMember(dest => dest.Lessons, opt => opt.MapFrom(src => src.Lessons.Select(t => t.Lesson)));
             //CreateMap<Photo, PhotoDto>();
 
             CreateMap<MemberUpdateDto, AppUser>();
@@ -28,8 +29,9 @@ namespace Server.Helpers
             CreateMap<AddWordDto, WordDto>();
 
             //Lessons
-            CreateMap<Lesson,LessonDto>()
-                .ForMember(dest => dest.Words, opt => opt.MapFrom(src => src.Words.Select( t =>t.Word)));
+            CreateMap<Lesson, LessonDto>()
+                .ForMember(dest => dest.Words, opt => opt.MapFrom(src => src.Words.Select(t => t.Word)))
+                .ForMember(dest => dest.Users, opt => opt.MapFrom(src => src.Users.Select(t=> t.AppUser)));
 
 
             CreateMap<LessonDto, Lesson>();

@@ -9,5 +9,7 @@ namespace Server.DTOs
         public string Level { get; set; }
 
         public IEnumerable<WordDto> Words { get; set; }
+
+        public IEnumerable<MemberDto> Users { get; set; }
     }
 }

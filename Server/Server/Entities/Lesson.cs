@@ -10,5 +10,6 @@ namespace Server.Entities
         public string Level { get; set; }
 
         public ICollection<LessonWord> Words { get; set; }
+        public ICollection<UserLesson> Users { get; set; }
     }
 }
