@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="cad-body">
+                <form [formGroup]="addLessonForm" (ngSubmit)="addLessonForm.valid && addLesson()">
+                    <app-text-input [formControl]='addLessonForm.controls["name"]' [label]='"Lecke neve"'></app-text-input> 
+                    <div class="form-group">
+                        <label for="sel1">Lecke szintje: </label>
+                        <select class="form-control" [formControl]='addLessonForm.controls["level"]' >
+                          <option>A1</option>
+                          <option>A2</option>
+                          <option>B1</option>
+                          <option>B2</option>
+                          <option>C1</option>
+                          <option>C2</option>
+                          <option>C2*</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Hozzáadás" class="btn btn-success float-right ">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div style="height: 100px;">
+
+            <label>Szavak</label>
+            <ul class="list-group">
+                <li class="list-group-item " *ngFor="let word of words$ | async" [ngClass]="{'list-group-item-success': isSelected(word.id)}"  (click) = "selectRow(word.id)">
+                    <span class="float-right">{{word.englishWord}} - {{word.id}}</span>
+                    <span class="float-left">{{word.hungaryWord}}</span>
+                </li>
+            </ul>
+        </div>
+        
+         
+    </div>
+</div>

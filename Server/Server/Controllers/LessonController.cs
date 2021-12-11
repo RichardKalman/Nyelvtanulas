@@ -36,17 +36,18 @@ namespace Server.Controllers
             return Ok(lessons);
         }
 
-        [HttpGet("{name}")]
-        public async Task<ActionResult<IEnumerable<LessonDto>>> GetLessonByName(string name)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<LessonDto>> GetLessonById(int id)
         {
-            var lessons = await _lessonRepository.GetLessonByNameAsync(name);
-            return Ok(lessons);
+            var lesson = await _lessonRepository.GetLessonByIdAsync(id);
+            // var dto = _mapper.Map<LessonDto>(lesson);
+            return Ok(lesson);
         }
 
         [HttpPut]
         public async Task<ActionResult> ActionResult(UpdateLessonDto dto)
         {
-            
+
             //wip ellenőrzések
             var lesson = await _lessonRepository.GetLessonByIdAsLessonAsync(dto.Id);
 
@@ -54,11 +55,11 @@ namespace Server.Controllers
             await _lessonWordRepository.AddAllWordByLessonId(dto.Id, dto.WordIds);
 
             _mapper.Map(dto, lesson);
-           
+
             //var lesson = _mapper.Map<Lesson>(lessonDto);
 
             _lessonRepository.Update(lesson);
-            
+
 
             if (await _lessonRepository.SaveAllAsync()) return NoContent();
 
@@ -69,12 +70,19 @@ namespace Server.Controllers
         [HttpPost]
         public async Task<ActionResult<LessonDto>> AddLesson(AddLessonDto addLessonDto)
         {
-             //WIP ELLENŐRZÉS
+            //WIP ELLENŐRZÉS
             var lesson = await _lessonRepository.AddLesson(addLessonDto);
 
             return lesson;
 
             //return BadRequest("Nem sikerült hozzáadni a Leckét");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteLesson(int id)
+        {
+            await _lessonRepository.DeleteLessonById(id);
+            return NoContent();
         }
 
 

@@ -55,6 +55,22 @@ namespace Server.Repositories
                 SingleOrDefaultAsync();
         }
 
+        public async Task<bool> DeleteLessonById(int Id)
+        {
+            var delete = await _context.Lessons.Where(x => x.Id == Id).SingleOrDefaultAsync();
+            if (delete == null)
+            {
+                return false;
+            }
+            if (await _lessonWordRepository.DeleteAllByLessonId(Id))
+            {
+                return false;
+            }
+            _context.Lessons.Remove(delete);
+            return await SaveAllAsync();
+
+        }
+
         public async Task<IEnumerable<LessonDto>> GetLessonByNameAsync(string name)
         {
             return await _context.Lessons.

@@ -28,6 +28,11 @@ import { DeleteDialogComponent } from './_components/dialogs/delete-dialog/delet
 import { AddWordComponent } from './_components/dialogs/add-word/add-word.component';
 import { UpdateWordComponent } from './_components/dialogs/update-word/update-word.component';
 import { LessonListComponent } from './_components/lesson/lesson-list/lesson-list.component';
+import { LessonCreateComponent } from './_components/lesson/lesson-create/lesson-create.component';
+import { LessonSelectListComponent } from './_components/lesson/lesson-select-list/lesson-select-list.component';
+import { LessonDetailsComponent } from './_components/lesson/lesson-details/lesson-details.component';
+import { LessonEditComponent } from './_components/lesson/lesson-edit/lesson-edit.component';
+import { LessonDeleteComponent } from './_components/dialogs/lesson-delete/lesson-delete.component';
 
 
 @NgModule({
@@ -49,7 +54,12 @@ import { LessonListComponent } from './_components/lesson/lesson-list/lesson-lis
     DeleteDialogComponent,
     AddWordComponent,
     UpdateWordComponent,
-    LessonListComponent
+    LessonListComponent,
+    LessonCreateComponent,
+    LessonSelectListComponent,
+    LessonDetailsComponent,
+    LessonEditComponent,
+    LessonDeleteComponent
   ],
   imports: [
     BrowserModule,

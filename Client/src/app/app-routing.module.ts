@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { LessonCreateComponent } from './_components/lesson/lesson-create/lesson-create.component';
+import { LessonDetailsComponent } from './_components/lesson/lesson-details/lesson-details.component';
 import { LessonListComponent } from './_components/lesson/lesson-list/lesson-list.component';
 import { UserEditComponent } from './_components/user-edit/user-edit.component';
 import { UserdetailsComponent } from './_components/userdetails/userdetails.component';
@@ -18,12 +20,15 @@ const routes: Routes = [
     path: '',
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
+    
     children: [
       {path: 'users', component: UserlistComponent},
       {path: 'users/:username', component: UserdetailsComponent},
       {path: 'user/edit', component: UserEditComponent},
       {path: 'words', component: WordListComponent},
-      {path: 'lessons',component: LessonListComponent}
+      {path: 'lessons',component: LessonListComponent},
+      {path: 'lesson/add',component: LessonCreateComponent},
+      {path: 'lessons/:id',component:LessonDetailsComponent}
     ]
   },
   {path: 'errors', component: TestErrorsComponent},

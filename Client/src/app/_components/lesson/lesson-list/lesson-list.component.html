@@ -1,1 +1,28 @@
-<p>lesson-list works!</p>
+<div class="row">
+    <div class="col-lg-12">        
+        <table class="table">
+            <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Név</th>
+                  <th>Nehézség</th>
+                  <th>Szavak száma</th>
+                  <th>Gombok</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let lesson of lessons$ | async">
+                    <td>{{lesson.id}}</td>
+                    <td>{{lesson.name}}</td>
+                    <td>{{lesson.level}}</td>
+                    <td>{{lesson.words.length}} Db</td>
+                    <td>
+                        <button routerLink='/lessons/{{lesson.id}}' class="btn btn-primary"><i class="fa fa-align-justify"></i></button>
+                        <button class="btn btn-danger" (click)="deleteDialog(lesson.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    
+                    </td>
+               </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

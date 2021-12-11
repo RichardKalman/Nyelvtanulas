@@ -1,0 +1,8 @@
+
+asd
+<ul class="list-group">
+    <li class="list-group-item " *ngFor="let word of words$ | async " [ngClass]="{'list-group-item-success': isSelected(word.id)}"  (click) = "selectRow(word.id)">
+        <span class="float-right">{{word.englishWord}}</span>
+        <span class="float-left">{{word.hungaryWord}}</span>
+    </li>
+</ul>

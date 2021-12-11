@@ -1,0 +1,57 @@
+<div class="row" *ngIf="lesson">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <strong>Lecke Neve</strong>
+                    <p>{{lesson.name}}</p>
+                </div>
+                <div>
+                    <strong>Lecke nehézsége:</strong>
+                    <p>{{lesson.level}}</p>
+                </div>
+                <div>
+                    <strong>Szavak száma:</strong>
+                    <p>{{lesson.words.length}}</p>
+                </div>
+                
+            </div>
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button class="btn btn-primary">Like</button>
+                    <button class="btn btn-danger" (click)="delete()">Törlés</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-8">
+        <tabset class="member-tabset">
+            <tab heading='Szavak'>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Angol</th>
+                            <th>Magyar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let word of lesson.words">
+                            <td>{{word.englishWord}}</td>
+                            <td>{{word.hungaryWord}}</td>
+                        </tr>
+                    </tbody>
+                </table>              
+            </tab>
+            <tab heading='Módosítás'>
+                <app-lesson-edit [lesson]="lesson"></app-lesson-edit>
+            </tab>
+            <tab heading='etc'>
+                valami
+            </tab>
+            <tab heading='etc'>
+                <p>valamimás</p>
+            </tab>
+        </tabset>
+    </div>
+</div>

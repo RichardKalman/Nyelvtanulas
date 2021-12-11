@@ -15,6 +15,7 @@ namespace Server.Interfaces
         Task<Lesson> GetLessonByIdAsLessonAsync(int id);
          Task<LessonDto> GetLessonByIdAsync(int id);
         Task<IEnumerable<LessonDto>> GetLessonByNameAsync(string name);
+        Task<bool> DeleteLessonById(int Id);
         //Task<LessonDto> GetWordByEnglishWordAsync(string englishWord);
     }
 }
