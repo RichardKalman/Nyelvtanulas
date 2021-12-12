@@ -8,20 +8,20 @@ import { DoLessonComponent } from './_components/doLesson/do-lesson/do-lesson.co
 import { LessonCreateComponent } from './_components/lesson/lesson-create/lesson-create.component';
 import { LessonDetailsComponent } from './_components/lesson/lesson-details/lesson-details.component';
 import { LessonListComponent } from './_components/lesson/lesson-list/lesson-list.component';
+import { MyLessonsComponent } from './_components/lesson/my-lessons/my-lessons.component';
+import { MyResultsComponent } from './_components/lesson/my-results/my-results.component';
 import { UserEditComponent } from './_components/user-edit/user-edit.component';
 import { UserdetailsComponent } from './_components/userdetails/userdetails.component';
 import { UserlistComponent } from './_components/userlist/userlist.component';
 import { WordListComponent } from './_components/word-list/word-list.component';
 import { AuthGuard } from './_guards/auth.guard';
-import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 
 const routes: Routes = [
   {path: '', component: AppComponent},
   {
     path: '',
     runGuardsAndResolvers: 'always',
-    canActivate: [AuthGuard],
-    
+    canActivate: [AuthGuard],    
     children: [
       {path: 'users', component: UserlistComponent},
       {path: 'users/:username', component: UserdetailsComponent},
@@ -30,7 +30,9 @@ const routes: Routes = [
       {path: 'lessons',component: LessonListComponent},
       {path: 'lesson/add',component: LessonCreateComponent},
       {path: 'lessons/:id',component: LessonDetailsComponent},
-      {path: 'doLesson/:userId/:lessonId', component: DoLessonComponent}
+      {path: 'doLesson/:userId/:lessonId', component: DoLessonComponent},
+      {path: 'mylesson/:userId', component: MyLessonsComponent},
+      {path: 'myresult/:userId', component: MyResultsComponent}
     ]
   },
   {path: 'errors', component: TestErrorsComponent},

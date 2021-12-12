@@ -8,7 +8,7 @@ import { Member } from 'src/app/_models/member';
 })
 export class UserTableRowComponent implements OnInit {
 
-  @Input() member: Member;
+  @Input() member: any;
 
   constructor() { }
 

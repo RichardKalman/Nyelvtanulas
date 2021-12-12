@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4" *ngFor="let l of lessons">
+            <div class="card">
+                <div class="card-body">
+                    <div>
+                        <strong>Lecke neve:</strong>
+                        <p>{{l.name}}</p>
+                    </div>
+                    <div>
+                        <strong>Szint:</strong>
+                        <p>{{l.level}}</p>
+                    </div>
+                    <div>
+                        <strong>Szavak száma:</strong>
+                        <p>{{getWordsLenght(l.words)}}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group d-flex">
+                        <button routerLink='/doLesson/{{userId}}/{{l.id}}' class="btn btn-sm btn-primary">Kitöltés</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

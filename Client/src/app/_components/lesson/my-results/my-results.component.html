@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Név</th>
+                        <th>Eltalált szavak</th>
+                        <th>Hibázott szavak</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let lr of lessonResult">
+                        <td>{{lr.lessonName}}</td>
+                        <td>{{lr.correctWord}}</td>
+                        <td>{{lr.notCorrectWord}}</td>
+                    </tr>
+                </tbody>
+            </table>  
+        </div>
+    </div>
+</div>

@@ -20,11 +20,8 @@ export class UserdetailsComponent implements OnInit {
 
   constructor(private memberService: MembersService, private lessonService: LessonService ,private route: ActivatedRoute, private router: Router,  private lessonResultService: LessonResultService,) { }
 
-  ngOnInit(): void {
-    
-   this.loadData();
-    
-    
+  ngOnInit(): void {   
+    this.loadData();  
   }
 
   async loadData() {

@@ -42,6 +42,8 @@ namespace Server.Controllers
 
             return new UserDto
             {
+                Fullname = user.Fullname,
+                Id = user.Id,
                 Username = user.UserName,
                 Token = _tokenService.CreateToken(user)
             };
@@ -66,6 +68,8 @@ namespace Server.Controllers
 
             return new UserDto
             {
+                Fullname = user.Fullname,
+                Id = user.Id,
                 Username = user.UserName,
                 Token = _tokenService.CreateToken(user)
             };

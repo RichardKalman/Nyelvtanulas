@@ -35,24 +35,24 @@
     <div class="col-8">
         <tabset class="member-tabset">
             <tab heading='Leckék'>
-                    <table class="table table-sm">
-                        <thead>
-                            <tr>
-                                <th>Lecke Neve</th>
-                                <th>Szint</th>
-                                <th>Szavak száma</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let l of lessons">
-                                <td>{{l.name}}</td>
-                                <td>{{l.level}}</td> 
-                                <td>{{getWordsLenght(l.words)}}</td>                               
-                                <td><button routerLink='/doLesson/{{member.id}}/{{l.id}}' class="btn btn-sm btn-primary"><i class="fa fa-align-justify"></i></button></td>
-                            </tr>
-                        </tbody>
-                    </table>          
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Lecke Neve</th>
+                            <th>Szint</th>
+                            <th>Szavak száma</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let l of lessons">
+                            <td>{{l.name}}</td>
+                            <td>{{l.level}}</td> 
+                            <td>{{getWordsLenght(l.words)}}</td>                               
+                            <td><button routerLink='/doLesson/{{member.id}}/{{l.id}}' class="btn btn-sm btn-primary"><i class="fa fa-align-justify"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>          
             </tab>
             <tab heading='Lecke Eredmények'>
                 <table class="table table-sm">

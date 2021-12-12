@@ -35,6 +35,8 @@ import { LessonEditComponent } from './_components/lesson/lesson-edit/lesson-edi
 import { LessonDeleteComponent } from './_components/dialogs/lesson-delete/lesson-delete.component';
 import { AddUserToLessonComponent } from './_components/dialogs/add-user-to-lesson/add-user-to-lesson.component';
 import { DoLessonComponent } from './_components/doLesson/do-lesson/do-lesson.component';
+import { MyLessonsComponent } from './_components/lesson/my-lessons/my-lessons.component';
+import { MyResultsComponent } from './_components/lesson/my-results/my-results.component';
 
 
 
@@ -64,7 +66,9 @@ import { DoLessonComponent } from './_components/doLesson/do-lesson/do-lesson.co
     LessonEditComponent,
     LessonDeleteComponent,
     AddUserToLessonComponent,
-    DoLessonComponent
+    DoLessonComponent,
+    MyLessonsComponent,
+    MyResultsComponent
   ],
   imports: [
     BrowserModule,
