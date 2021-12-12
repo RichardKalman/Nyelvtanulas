@@ -25,16 +25,26 @@ export class ErrorInterceptor implements HttpInterceptor {
                 const modalStateErrors = [];
                 for (const key in error.error.errors) {
                   if (error.error.errors[key]) {
-                    modalStateErrors.push(error.error.errors[key])
+
+                    this.toastr.error( error.error.errors[key][0],error.statusText);
                   }
                 }
                 throw modalStateErrors.flat();
               } else {
-                this.toastr.error(error.statusText, error.status);
+                if(Array.isArray(error.error)){
+                  for(const err in error.error){
+                    var obj = error.error[err]
+                    this.toastr.error((obj as any).description,error.statusText);
+                  }
+                }
+                else{
+                  this.toastr.error(error.error, error.status);
+                }
+                
               }
               break;
             case 401:
-              this.toastr.error(error.statusText, error.status);
+              this.toastr.error(error.error, error.status);
               break;
             case 404:
               this.router.navigateByUrl('/not-found');
