@@ -1,29 +1,11 @@
 [
   {
     "UserName": "admin",
-    "Gender": "female",
+    "Gender": "Fiú",
     "FullName": "Admin Admin",
-    "DateOfBirth": "1956-07-22",
-    "Created": "2020-06-24",
-    "LastActive": "2020-06-21",
+    "DateOfBirth": "1000-07-22",
+    "Created": "2021-12-12",
+    "LastActive": "2021-12-12",
     "Email": "admin@admin.hu"
-  },
-  {
-    "UserName": "Lisa",
-    "Gender": "female",
-    "FullName": "Lisa Kiss",
-    "DateOfBirth": "1956-07-22",
-    "Created": "2020-06-24",
-    "LastActive": "2020-06-21",
-    "Email": "lisa@lisa.hu"
-  },
-  {
-    "UserName": "Thomas",
-    "FullName":  "Thomas vagyok",
-    "Gender": "male",
-    "DateOfBirth": "1956-07-22",
-    "Created": "2020-06-24",
-    "LastActive": "2020-06-21",
-    "Email": "Thomas@Thomas.hu"
   }
 ]

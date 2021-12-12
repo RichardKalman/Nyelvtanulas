@@ -37,6 +37,10 @@ import { AddUserToLessonComponent } from './_components/dialogs/add-user-to-less
 import { DoLessonComponent } from './_components/doLesson/do-lesson/do-lesson.component';
 import { MyLessonsComponent } from './_components/lesson/my-lessons/my-lessons.component';
 import { MyResultsComponent } from './_components/lesson/my-results/my-results.component';
+import { HasRoleDirective } from './_directives/has-role.directive';
+import { AdminPanelComponent } from './_components/admin/admin-panel/admin-panel.component';
+import { UserManagmentComponent } from './_components/admin/user-managment/user-managment.component';
+import { RolesModalComponent } from './_components/dialogs/roles-modal/roles-modal.component';
 
 
 
@@ -68,7 +72,11 @@ import { MyResultsComponent } from './_components/lesson/my-results/my-results.c
     AddUserToLessonComponent,
     DoLessonComponent,
     MyLessonsComponent,
-    MyResultsComponent
+    MyResultsComponent,
+    HasRoleDirective,
+    AdminPanelComponent,
+    UserManagmentComponent,
+    RolesModalComponent
   ],
   imports: [
     BrowserModule,
