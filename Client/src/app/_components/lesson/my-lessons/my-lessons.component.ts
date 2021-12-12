@@ -29,4 +29,8 @@ export class MyLessonsComponent implements OnInit {
     return words.length;
   }
 
+  getLessonsLenght(lesson:Lesson[]){
+    return lesson.length;
+  }
+
 }
