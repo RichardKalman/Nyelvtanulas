@@ -42,7 +42,7 @@ export class LessonCreateComponent implements OnInit {
 
   intitializeForm() {
     this.addLessonForm = this.fb.group({
-      name: ['asdsa', Validators.required],
+      name: ['', Validators.required],
       level: ['B1', Validators.required]
     });
   }

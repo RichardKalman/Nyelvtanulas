@@ -20,6 +20,7 @@ namespace Server.Extensions
             services.AddScoped<IWordRepository, WordRepository>();
             services.AddScoped<ILessonRepository,LessonRepository>();
             services.AddScoped<ILessonWordRepository, LessonWordRepository>();
+            services.AddScoped<ILessonResultRepository, LessonResultRepository>();
 
 
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);

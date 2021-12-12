@@ -2,6 +2,7 @@
   {
     "UserName": "admin",
     "Gender": "female",
+    "FullName": "Admin Admin",
     "DateOfBirth": "1956-07-22",
     "Created": "2020-06-24",
     "LastActive": "2020-06-21",
@@ -10,6 +11,7 @@
   {
     "UserName": "Lisa",
     "Gender": "female",
+    "FullName": "Lisa Kiss",
     "DateOfBirth": "1956-07-22",
     "Created": "2020-06-24",
     "LastActive": "2020-06-21",
@@ -17,6 +19,7 @@
   },
   {
     "UserName": "Thomas",
+    "FullName":  "Thomas vagyok",
     "Gender": "male",
     "DateOfBirth": "1956-07-22",
     "Created": "2020-06-24",

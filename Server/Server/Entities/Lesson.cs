@@ -11,5 +11,7 @@ namespace Server.Entities
 
         public ICollection<LessonWord> Words { get; set; }
         public ICollection<UserLesson> Users { get; set; }
+
+        public ICollection<LessonLessonResult> LessonResults { get; set; }
     }
 }

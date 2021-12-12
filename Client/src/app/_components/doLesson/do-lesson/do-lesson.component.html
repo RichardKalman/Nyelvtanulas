@@ -1,0 +1,21 @@
+<form [formGroup]="wordForm" (ngSubmit)="send()">
+    <div formArrayName="words">
+        <table class="table table-bordered table-sm text-center">
+            <thead>
+                <tr>
+                  <th>Angol szó</th>
+                  <th>Magyar szó</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let word of getWords().controls; let wordIndex=index" [formGroupName]="wordIndex">
+                    <td>{{word.value.englishWord }}</td>
+                    <td> <input type="text" formControlName="hungaryWord"  /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <input type="submit" class="btn btn-success" value="kész">
+</form>
+
+{{wordForm.value | json}}

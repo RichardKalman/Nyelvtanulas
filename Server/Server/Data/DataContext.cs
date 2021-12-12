@@ -15,6 +15,11 @@ namespace Server.Data
         public DbSet<LessonWord> LessonWords { get; set; }
 
         public DbSet<UserLesson> UserLesson { get; set; }
+        public DbSet<LessonResult> LessonResult { get; set; }
+
+        public DbSet<LessonLessonResult> LessonLessonResults { get; set; } 
+
+        public DbSet<UserLessonResult> UserLessonResults { get; set; }
 
         public DataContext(DbContextOptions options) : base(options)
         {
@@ -48,6 +53,37 @@ namespace Server.Data
                 .HasOne<AppUser>(l => l.AppUser)
                 .WithMany(l => l.Lessons)
                 .HasForeignKey(l => l.AppUserId);
+
+
+            builder.Entity<UserLessonResult>()
+                .HasKey(ulr => new { ulr.AppUserId, ulr.LessonResultId });
+
+            builder.Entity<UserLessonResult>()
+                .HasOne<LessonResult>(l => l.LessonResult)
+                .WithMany(l => l.Users)
+                .HasForeignKey(l => l.LessonResultId);
+
+            builder.Entity<UserLessonResult>()
+                .HasOne<AppUser>(l => l.AppUser)
+                .WithMany(l => l.LessonResults)
+                .HasForeignKey(l => l.AppUserId);
+
+            //Lesson -> LessonResult
+            builder.Entity<LessonLessonResult>()
+                .HasKey(llr => new { llr.LessonResultId, llr.LessonId });
+
+            builder.Entity<LessonLessonResult>()
+                .HasOne<LessonResult>(l => l.LessonResult)
+                .WithMany(l => l.Lessons)
+                .HasForeignKey(l => l.LessonResultId);
+
+            builder.Entity<LessonLessonResult>()
+                .HasOne<Lesson>(l => l.Lesson)
+                .WithMany(l => l.LessonResults)
+                .HasForeignKey(l => l.LessonId);
+
+    
+
         }
     }
 }

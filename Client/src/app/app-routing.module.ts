@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { DoLessonComponent } from './_components/doLesson/do-lesson/do-lesson.component';
 import { LessonCreateComponent } from './_components/lesson/lesson-create/lesson-create.component';
 import { LessonDetailsComponent } from './_components/lesson/lesson-details/lesson-details.component';
 import { LessonListComponent } from './_components/lesson/lesson-list/lesson-list.component';
@@ -28,7 +29,8 @@ const routes: Routes = [
       {path: 'words', component: WordListComponent},
       {path: 'lessons',component: LessonListComponent},
       {path: 'lesson/add',component: LessonCreateComponent},
-      {path: 'lessons/:id',component:LessonDetailsComponent}
+      {path: 'lessons/:id',component: LessonDetailsComponent},
+      {path: 'doLesson/:userId/:lessonId', component: DoLessonComponent}
     ]
   },
   {path: 'errors', component: TestErrorsComponent},

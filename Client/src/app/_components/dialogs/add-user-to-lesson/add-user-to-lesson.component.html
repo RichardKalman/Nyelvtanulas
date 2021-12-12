@@ -1,0 +1,29 @@
+<div class="alert-box">
+    <div class="modal-header">
+        <h4 class="modal-title">Új diák hozzáadása a leckéhez</h4>
+        <button type="button" class="close" aria-label="Close" (click)="_bsModalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="card">
+            <div class="cad-body">
+                <form [formGroup]="addUserForm" (ngSubmit)="addUserForm.valid && addUser()">
+                    <div class="form-group">
+                        <label for="sel1">Felhasználó választása </label>
+                        <select class="form-control" [formControl]='addUserForm.controls["userId"]'  >
+                          <option *ngFor="let user of users | async" [value]="user.id">{{user.fullname}} </option>
+                        
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Hozzáadás" class="btn btn-success float-right ">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="_bsModalRef.hide()">Mégsem</button>        
+    </div>
+</div>

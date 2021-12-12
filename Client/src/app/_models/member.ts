@@ -1,7 +1,9 @@
 import { Lesson } from "./lesson";
+import { LessonResult } from "./lessonresult";
 
 export interface Member {
     id: number;
+    FullName: string;
     userName: string;
     dateOfBirth: Date;
     created: Date;
@@ -10,4 +12,5 @@ export interface Member {
     age: number;
     gender: string;
     lessons: Lesson[];
+    lessonsResult: LessonResult[]
 }

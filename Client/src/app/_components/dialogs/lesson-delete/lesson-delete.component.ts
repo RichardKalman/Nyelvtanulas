@@ -16,10 +16,10 @@ export class LessonDeleteComponent implements OnInit {
   constructor(public _bsModalRef: BsModalRef, private lessonService: LessonService,private router: Router) { }
 
   ngOnInit(): void {
+    
   }
 
   delete(){
-
     this.lessonService.deleteLesson(this.id);
     this._bsModalRef.hide();
     if(this.navigate){

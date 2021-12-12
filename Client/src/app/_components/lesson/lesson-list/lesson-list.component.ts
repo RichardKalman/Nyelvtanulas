@@ -3,6 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { LessonService } from 'src/app/_services/lesson.service';
 import { Lesson } from '../../../_models/lesson';
+import { AddUserToLessonComponent } from '../../dialogs/add-user-to-lesson/add-user-to-lesson.component';
 import { LessonDeleteComponent } from '../../dialogs/lesson-delete/lesson-delete.component';
 
 @Component({
@@ -26,5 +27,7 @@ export class LessonListComponent implements OnInit {
     this.modalRef.content.id = id;
     this.modalRef.content.navigate = false;
   }
+
+  
 
 }

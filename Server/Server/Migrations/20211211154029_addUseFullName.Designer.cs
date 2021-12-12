@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Server.Data;
 
 namespace Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20211211154029_addUseFullName")]
+    partial class addUseFullName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,7 +33,7 @@ namespace Server.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Fullname")
+                    b.Property<string>("FullName")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Gender")
@@ -71,38 +73,6 @@ namespace Server.Migrations
                     b.ToTable("Lessons");
                 });
 
-            modelBuilder.Entity("Server.Entities.LessonLessonResult", b =>
-                {
-                    b.Property<int>("LessonResultId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("LessonId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("LessonResultId", "LessonId");
-
-                    b.HasIndex("LessonId");
-
-                    b.ToTable("LessonLessonResults");
-                });
-
-            modelBuilder.Entity("Server.Entities.LessonResult", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CorrectWord")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("NotCorrectWord")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LessonResult");
-                });
-
             modelBuilder.Entity("Server.Entities.LessonWord", b =>
                 {
                     b.Property<int>("LessonId")
@@ -133,21 +103,6 @@ namespace Server.Migrations
                     b.ToTable("UserLesson");
                 });
 
-            modelBuilder.Entity("Server.Entities.UserLessonResult", b =>
-                {
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("LessonResultId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("AppUserId", "LessonResultId");
-
-                    b.HasIndex("LessonResultId");
-
-                    b.ToTable("UserLessonResults");
-                });
-
             modelBuilder.Entity("Server.Entities.Word", b =>
                 {
                     b.Property<int>("Id")
@@ -163,25 +118,6 @@ namespace Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Words");
-                });
-
-            modelBuilder.Entity("Server.Entities.LessonLessonResult", b =>
-                {
-                    b.HasOne("Server.Entities.Lesson", "Lesson")
-                        .WithMany("LessonResults")
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Server.Entities.LessonResult", "LessonResult")
-                        .WithMany("Lessons")
-                        .HasForeignKey("LessonResultId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Lesson");
-
-                    b.Navigation("LessonResult");
                 });
 
             modelBuilder.Entity("Server.Entities.LessonWord", b =>
@@ -222,46 +158,16 @@ namespace Server.Migrations
                     b.Navigation("Lesson");
                 });
 
-            modelBuilder.Entity("Server.Entities.UserLessonResult", b =>
-                {
-                    b.HasOne("Server.Entities.AppUser", "AppUser")
-                        .WithMany("LessonResults")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Server.Entities.LessonResult", "LessonResult")
-                        .WithMany("Users")
-                        .HasForeignKey("LessonResultId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("LessonResult");
-                });
-
             modelBuilder.Entity("Server.Entities.AppUser", b =>
                 {
-                    b.Navigation("LessonResults");
-
                     b.Navigation("Lessons");
                 });
 
             modelBuilder.Entity("Server.Entities.Lesson", b =>
                 {
-                    b.Navigation("LessonResults");
-
                     b.Navigation("Users");
 
                     b.Navigation("Words");
-                });
-
-            modelBuilder.Entity("Server.Entities.LessonResult", b =>
-                {
-                    b.Navigation("Lessons");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Server.Entities.Word", b =>

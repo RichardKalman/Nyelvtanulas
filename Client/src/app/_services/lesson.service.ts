@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Lesson } from '../_models/lesson';
 import { UpdateLesson } from '../_models/updateModels/updateLesson';
+import { UserToAddLesson } from '../_models/userToAddLesson';
 import { AddLesson } from '../_models/_addModels/addLesson';
 
 @Injectable({
@@ -19,14 +20,17 @@ export class LessonService {
   public lessons$ = this.lessons.asObservable();
 
   constructor(private http: HttpClient,private router: Router) { 
-    
+    this.getLessons();
+  }
+
+  getLessonByUser(userid:number ){    
+    return this.http.get<Lesson[]>(this.fullUrl+"user/"+userid).toPromise()
   }
 
   getLessons(){
     this.http.get<Lesson[]>(this.fullUrl).pipe(
       map(lessons => {
         this.lessons.next(lessons);
-        console.log(this.lessons.getValue())
       })
     ).toPromise(); 
   }
@@ -65,5 +69,22 @@ export class LessonService {
           console.error('There was an error!', error);
       }
     });
+  }
+
+  getNotExistUserByLessonId(id:number){
+    return this.http.get<UserToAddLesson[]>(this.fullUrl + "availableusers/" + id)
+  }
+
+  addUserToLesson(userId: number, lessonId: number){
+    this.http.post(this.fullUrl+"AddUserIdtoLessonId/"+userId+"/"+lessonId,null).pipe(
+      map((l: Lesson) => {
+        if (l) {
+          const lessons = this.lessons.getValue();
+          let prev = lessons.find( t => t.id === lessonId);
+          prev = l;
+          this.lessons.next([...lessons])
+        }
+      })
+    ).toPromise();
   }
 }

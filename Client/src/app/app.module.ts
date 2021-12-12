@@ -33,6 +33,9 @@ import { LessonSelectListComponent } from './_components/lesson/lesson-select-li
 import { LessonDetailsComponent } from './_components/lesson/lesson-details/lesson-details.component';
 import { LessonEditComponent } from './_components/lesson/lesson-edit/lesson-edit.component';
 import { LessonDeleteComponent } from './_components/dialogs/lesson-delete/lesson-delete.component';
+import { AddUserToLessonComponent } from './_components/dialogs/add-user-to-lesson/add-user-to-lesson.component';
+import { DoLessonComponent } from './_components/doLesson/do-lesson/do-lesson.component';
+
 
 
 @NgModule({
@@ -59,7 +62,9 @@ import { LessonDeleteComponent } from './_components/dialogs/lesson-delete/lesso
     LessonSelectListComponent,
     LessonDetailsComponent,
     LessonEditComponent,
-    LessonDeleteComponent
+    LessonDeleteComponent,
+    AddUserToLessonComponent,
+    DoLessonComponent
   ],
   imports: [
     BrowserModule,

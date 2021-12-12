@@ -13,7 +13,7 @@ using System.Security.Claims;
 
 namespace Server.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class LessonController : BaseApiController
     {
         private readonly ILessonWordRepository _lessonWordRepository;
@@ -34,6 +34,13 @@ namespace Server.Controllers
         {
             var lessons = await _lessonRepository.GetLessonsAsync();
             return Ok(lessons);
+        }
+
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<IEnumerable<LessonDto>>> GetLessonByUserId(int userId)
+        {
+            var lessons = await _lessonRepository.getLessonByUserId(userId);
+            return Ok(lessons.ToList());
         }
 
         [HttpGet("{id}")]
@@ -86,10 +93,22 @@ namespace Server.Controllers
         }
 
         [HttpGet("availableusers/{id}")]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetNoAcceptUsers(int id)
+        public async Task<ActionResult<IEnumerable<UserForAddToLesson>>> GetNoAcceptUsers(int id)
         {
             return Ok(await _lessonRepository.GetNoAcceptUsers(id));
         }
+
+        [HttpPost("AddUserIdtoLessonId/{userid}/{lessonid}")]
+        public async Task<ActionResult<LessonDto>> AddUserIdToLessonId(int userid,int lessonid)
+        {
+            if(await _lessonRepository.addUserByLessonId(userid, lessonid))
+            {
+                return Ok(await _lessonRepository.GetLessonByIdAsync(lessonid));
+            }
+            return BadRequest();
+        }
+
+        
 
 
         

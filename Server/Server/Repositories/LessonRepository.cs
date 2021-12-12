@@ -54,6 +54,12 @@ namespace Server.Repositories
                 ProjectTo<LessonDto>(_mapper.ConfigurationProvider).
                 SingleOrDefaultAsync();
         }
+        public async Task<Lesson> GetLessonByIdWithLessonTypeAsync(int id)
+        {
+            return await _context.Lessons.
+                Where(x => x.Id == id).
+                SingleOrDefaultAsync();
+        }
 
         public async Task<bool> DeleteLessonById(int Id)
         {
@@ -84,14 +90,26 @@ namespace Server.Repositories
             return await _context.Lessons.ProjectTo<LessonDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
-        public async Task<IEnumerable<MemberDto>> GetNoAcceptUsers(int id)
+        public async Task<IEnumerable<UserForAddToLesson>> GetNoAcceptUsers(int id)
         {
             var lesson = await _context.Lessons.Where(l => l.Id == id).ProjectTo<LessonDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();
             var users = lesson.Users.Select(x => x.Id);
 
-            var noAcceptUser = await _context.Users.Where(x => !users.Contains(x.Id)).ProjectTo<MemberDto>(_mapper.ConfigurationProvider).ToListAsync();
+            var noAcceptUser = await _context.Users.Where(x => !users.Contains(x.Id)).ProjectTo<UserForAddToLesson>(_mapper.ConfigurationProvider).ToListAsync();
 
             return noAcceptUser;
+        }
+
+        public async Task<bool> addUserByLessonId(int userId, int lessonId)
+        {
+            await _context.UserLesson.AddAsync(new UserLesson { AppUserId = userId, LessonId = lessonId });
+            return await SaveAllAsync();
+        }
+
+        public async Task<IEnumerable<LessonDto>> getLessonByUserId(int userId)
+        {
+            
+            return await _context.Lessons.Where(t => t.Users.Any(t => t.AppUserId == userId)).ProjectTo<LessonDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
     }
 }

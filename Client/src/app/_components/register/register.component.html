@@ -7,7 +7,8 @@
                 </div>
                 <div class="card-body">
                     <form [formGroup]='registerForm' (ngSubmit)="registerForm.valid && register()" >
-                        <app-text-input [formControl]='registerForm.controls["username"]' [label]='"Felhasználó név"'></app-text-input>   
+                        <app-text-input [formControl]='registerForm.controls["username"]' [label]='"Felhasználó név"'></app-text-input>
+                        <app-text-input [formControl]='registerForm.controls["fullname"]' [label]='"Teljes név:"'></app-text-input>     
                         <app-text-input [formControl]='registerForm.controls["email"]' [label]='"Email"'></app-text-input>                     
                         <app-date-input [formControl]='registerForm.controls["dateOfBirth"]' [label]='"Születési idő"' ></app-date-input>
                         <div class="form-group">
