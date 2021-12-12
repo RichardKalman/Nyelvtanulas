@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { BehaviorSubject, observable, Observable, of, ReplaySubject, Subject, throwError } from 'rxjs';
 import { Word } from '../_models/word';
 import { AddWord } from '../_models/_addModels/addWord';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class WordsService {
   private words = new BehaviorSubject<Word[]>([]);
   public words$ = this.words.asObservable();
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient,private toastr: ToastrService) { 
     
   }
 
@@ -33,10 +34,7 @@ export class WordsService {
         next: data => {
           const prev = this.words.getValue().filter( t => t.id !== id);
           this.words.next([...prev])
-          
-        },
-        error: error => {
-            console.error('There was an error!', error);
+          this.toastr.success("Sikeres törlés!");
         }
       });
   }
@@ -47,6 +45,7 @@ export class WordsService {
         if (word) {
           const prev = this.words.getValue();
           this.words.next([...prev , word])
+          this.toastr.success("Sikeres hozzáadás!");
         }
       })
     ).toPromise();
@@ -55,10 +54,11 @@ export class WordsService {
   updateWord(word: Word){
       this.http.put(this.baseUrl + 'word', word).pipe(
         map((response: any) => {          
-          console.log("response")
+          
           const prevWord = this.words.getValue().find( t => t.id == word.id);
           prevWord.englishWord = word.englishWord;
-          prevWord.hungaryWord = word.hungaryWord;          
+          prevWord.hungaryWord = word.hungaryWord; 
+          this.toastr.success("Sikeres módosítás!");         
         })
       ).toPromise();
   }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -19,7 +20,7 @@ export class LessonService {
   private lessons = new BehaviorSubject<Lesson[]>([]);
   public lessons$ = this.lessons.asObservable();
 
-  constructor(private http: HttpClient,private router: Router) { 
+  constructor(private http: HttpClient,private router: Router,private toastr: ToastrService) { 
     this.getLessons();
   }
 
@@ -39,6 +40,7 @@ export class LessonService {
     return this.http.post(this.fullUrl, lesson).pipe(
       map((l: Lesson) => {
         if (l) {
+          this.toastr.success("Sikeres hozzáadás!");
           this.router.navigateByUrl("lessons");
         }
       })
@@ -54,6 +56,7 @@ export class LessonService {
   updateLesson(lesson:UpdateLesson){
     return this.http.put(this.fullUrl,lesson).pipe(
       map(() => {
+        this.toastr.success("Sikeres Módosítás!");
         return true;
       })).toPromise()
   }
@@ -63,10 +66,8 @@ export class LessonService {
       next: data => {
         const prev = this.lessons.getValue().filter( t => t.id !== id);
         this.lessons.next([...prev])
+        this.toastr.success("Sikeres törlés!");
         
-      },
-      error: error => {
-          console.error('There was an error!', error);
       }
     });
   }
@@ -83,6 +84,7 @@ export class LessonService {
           let prev = lessons.find( t => t.id === lessonId);
           prev = l;
           this.lessons.next([...lessons])
+          this.toastr.success("Sikeres hozzáadtad a Felhasználót!");
         }
       })
     ).toPromise();

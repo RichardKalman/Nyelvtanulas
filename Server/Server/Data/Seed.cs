@@ -33,6 +33,7 @@ namespace Server.Data
             var admin = new AppUser
             {
                 UserName = "admin",
+                Fullname="Admin",
                 SecurityStamp = Guid.NewGuid().ToString()
             };
 

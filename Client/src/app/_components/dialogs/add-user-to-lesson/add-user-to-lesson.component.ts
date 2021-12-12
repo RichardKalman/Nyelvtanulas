@@ -37,7 +37,9 @@ export class AddUserToLessonComponent implements OnInit {
 
   addUser(){
     let userid = this.addUserForm.value.userId;
+    this.addUserForm.reset();
     this.lessonServices.addUserToLesson(userid,this.lessonid);
+    this._bsModalRef.hide();
   }
 
 

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">
-        <a class="navbar-brand" routerLink='/' routerLinkActive='active' href="#">Tanulj angolul</a>
+        <a class="navbar-brand" >Tanulj angolul</a>
 
         <ul class="navbar-nav mr-auto" *ngIf="(accountService.currentUser$ | async) as user" >
             <li class="nav-item">
@@ -9,29 +9,29 @@
             <li class="nav-item">
                 <a class="nav-link" routerLink='/myresult/{{user.id}}' routerLinkActive='active'>Eredményeim</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *appHasRole='["Admin"]'>
                 <a class="nav-link" routerLink='/users' routerLinkActive='active'>Felhasználók</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *appHasRole='["Admin"]'>
                 <a class="nav-link" routerLink='/words' routerLinkActive='active'>Szavak</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *appHasRole='["Admin"]'>
                 <a class="nav-link" routerLink='/lessons' routerLinkActive='active'>Leckék</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *appHasRole='["Admin"]'>
                 <a class="nav-link" routerLink='/lesson/add' routerLinkActive='active'>Leckék létrehozás</a>
             </li>
             
-            <li *appHasRole='["Admin", "Moderator"]' class="nav-item">
-                <a class="nav-link" routerLink='/admin'routerLinkActive='active' >Admin</a>
+            <li *appHasRole='["Admin"]' class="nav-item">
+                <a class="nav-link" routerLink='/admin'routerLinkActive='active' >Jog kezelések</a>
             </li>
 
         </ul>
 
         <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
             <a class="dropdown-toggle text-light" dropdownToggle>Üdvözlet {{user.fullname}}</a>
-            <div class="dropdown-menu mt-3" *dropdownMenu>
-                <a routerLink='/users/{{user.username}}' class="dropdown-item">profile WIP</a>
+            <div class="dropdown-menu  border mt-3" *dropdownMenu>
+                <a routerLink='/users/{{user.username}}' class="dropdown-item">Profil</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" (click)="logout()" >Logout</a>
             </div>

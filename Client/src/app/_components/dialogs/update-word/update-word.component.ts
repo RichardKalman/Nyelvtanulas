@@ -39,6 +39,8 @@ export class UpdateWordComponent implements OnInit {
     this.word.hungaryWord = this.updateWordForm.controls["hungaryWord"].value;
 
     this.wordServices.updateWord(this.word)
+    
+    this._bsModalRef.hide();
   
   }
 

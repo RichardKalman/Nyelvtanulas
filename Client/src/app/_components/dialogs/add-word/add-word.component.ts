@@ -39,7 +39,7 @@ export class AddWordComponent implements OnInit {
 
   public addWord(): void{
     this.wordServices.addWord((this.addWordForm.value as AddWord))
-  
+    this._bsModalRef.hide();
   }
 
 }

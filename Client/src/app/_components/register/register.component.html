@@ -23,7 +23,13 @@
                         <app-text-input [formControl]='registerForm.controls["password"]' [label]='"Jelszó"' [type]='"password"'></app-text-input>
                         <app-text-input [formControl]='registerForm.controls["confirmPassword"]' [label]='"Jelszó mégegyszer"'  [type]='"password"'></app-text-input>
 
-
+                        <div class="row" *ngIf="validationErrors.length > 0">
+                            <ul class="text-danger">
+                                <li *ngFor="let error of validationErrors">
+                                    {{error.description}}
+                                </li>
+                            </ul>
+                        </div>
                         <div class="form-group">
                             <input type="submit" value="Regisztrálás" class="btn float-right login_btn">
                         </div>

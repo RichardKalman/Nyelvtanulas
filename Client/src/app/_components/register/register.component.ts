@@ -34,8 +34,7 @@ export class RegisterComponent implements OnInit {
       username: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', [Validators.required, 
-        Validators.minLength(4), Validators.maxLength(8)]],
+      password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]]
     })
   }
@@ -48,12 +47,10 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.accountService.register(this.registerForm.value).subscribe(response => {
-      this.router.navigateByUrl('/users');
+    this.accountService.register(this.registerForm.value).subscribe(response => {      
+      this.router.navigateByUrl('/mylesson/'+response);
     }, error => {
-      console.log(error);
-      this.toastr.error(error.error);
-      this.validationErrors = error;
+      this.validationErrors = error.error;
     })
   }
 

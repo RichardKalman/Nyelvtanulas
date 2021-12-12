@@ -34,7 +34,7 @@ export class LessonResultService {
     this.http.post(this.fullUrl,data).pipe(
       map((l: LessonResult) => {
         if (l) {
-         this.router.navigateByUrl("/users")
+          this.router.navigateByUrl('/myresult/'+data.userId);
         }
       })
     ).toPromise()
